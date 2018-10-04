@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  <meta charset="utf-8" />
+  <title>{+invoice_id+}</title>
+  <meta name="author" content="Paul Martin"/>
+  <meta name="subject" content="How much money you owe me"/>
+  <meta name="keywords" content="money,cash,deniro"/>
+
+  <!-- get Work Sans font from the designer's github -->
+  <link rel="stylesheet" type="text/css" href="http://weiweihuanghuang.github.io/Work-Sans/worksanswebfonts.css">
+
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 2cm;
+    }
+    html {
+      font-family: "worksansregular";
+      font-size: 9pt;
+      line-height: 1.5em;
+    }
+    header, main {
+      margin-bottom: 5em;
+    }
+    h1 {
+      margin-top: 0;
+      font-family: "worksansbold";
+    }
+    p {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+    .section {
+      margin-bottom: 2em;
+    }
+    #invoice-details {
+      float: right;
+      text-align: right;
+    }
+    #invoice-details p {
+      margin: 0;
+    }
+    #payer-details{
+      clear: both;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    thead {
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+    th {
+      font-family: "worksanssemibold";
+    }
+    td, th {
+      padding: 0.2em 0.8em;
+      text-align: left;
+    }
+    .hours, .money {
+      white-space: nowrap;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+    .hours {
+      width: 6ch;
+    }
+    .money {
+      width: 8ch;
+    }
+    tr.subtotal {
+      border-top: 1px solid black;
+      border-bottom: 1em solid transparent;
+      font-family: "worksanssemibold";
+    }
+    td.money, td.hours {
+      text-align: right;
+    }
+    td.money .pound-sign {
+      display: inline-block;
+      float: left;
+    }
+    tfoot {
+      font-family: "worksanssemibold";
+      border-top: thin solid black;
+    }
+    .whoops {
+      color: red;
+      font-family: "worksansbold";
+    }
+  </style>
+  </head>
+  <body>
+          <header>
+                  <div id="invoice-details" class="section">
+                          <h1>Invoice</h1>
+                          <p>Invoice: {+invoice_id+}</p>
+                          <p>Period: {+period+}</p>
+                          <p>Date: {+date+}</p>
+                  </div>
+                  <div id="my-details" class="section">
+                          <p id="me"><strong>{+name+}</strong></p>
+                          <p id="my-address">{+address+}</p>
+                          <p id="my-phone">Phone: {+phone+}</p>
+                          <p id="my-email">Email: {+email+}</p>
+                  </div>
+                  <div id="payer-details" class="section">
+                          <p><strong>Invoice to:</strong></p>
+                          <p>
+                            {+client+}
+                            <br>{+client_address+}
+                          </p>
+                  </div>
+          </header>
+
+          <main>
+                  {+invoice_table+}
+          </main>
+
+          <footer>
+                  <p>{+payment_details+}</p>
+          </footer>
+          
+  </body>
+</html>
