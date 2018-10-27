@@ -155,6 +155,71 @@ class InvoiceTable:
 
         return output
 
+class CASInvoiceTable:
+    """Paul's output table class for CAS invoices"""
+
+    def __init__ (self):
+        self.header = []
+        self.rows = []
+        self.columns = 3
+
+    def addHeader(self, fields):
+        self.header.append(fields)
+
+    def addGig(self, fields):
+        self.rows.append(["gig", fields])
+
+    def render(self):
+        output = "<table>"
+        count_hours = 0
+        count_money = 0
+        sub_count_hours = 0
+        sub_count_money = 0
+
+        # table header
+        output += "<thead><tr>"
+        output += "<th class='reference'>Reference</th>"
+        output += "<th class='date'>Date</th>"
+        output += "<th class='task'>Description</th>"
+        output += "<th class='money'>Amount</th>"
+        output += "</tr></thead>"
+        
+        output += "<tbody>"
+
+        for row in self.rows:
+            type = row[0]
+            
+            if type == "gig":
+                fields = row[1]
+
+                reference = fields[0]
+                date = fields[1]
+                description = fields[2]
+                money = fields[3]
+
+                count_money += money
+                sub_count_money += money
+               
+                output += "<tr>"
+                output += "<td class='reference'>" + reference + "</td>"
+                output += "<td class='date'>" + format_date(date) + "</td>"
+                output += "<td class='task'>" + description + "</td>"
+                output += "<td class='money'>" + format_money(money) + "</td>"
+                output += "<tr>"
+
+        output += "</tbody>"
+
+        output += "<tfoot>"
+        output += "<tr>"
+        output += "<td colspan=3>Balance due:</td>"
+        output += "<td class='money'>" + format_money(count_money) + "</td>"
+        output += "<tr>"
+        output += "</tfoot>"
+
+        output += "</table>"
+
+        return output
+
 def format_hours(h):
     return '{0:.2f}'.format(h)
 

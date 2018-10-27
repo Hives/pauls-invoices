@@ -23,7 +23,7 @@ inv.phone = "01223 334444"
 inv.email = "joe.bloggs@joebloggs.com"
 
 # invoice details
-inv.invoice_id ="INVOICE01"
+inv.invoice_id = "INVOICE01"
 inv.period = "September 2018" # the period to which the invoice refers - optional
 inv.date = date(2018, 10, 4) # year, month, day
 
