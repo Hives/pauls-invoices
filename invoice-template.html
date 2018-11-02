@@ -21,7 +21,7 @@
       line-height: 1.5em;
     }
     body {
-            margin: 0;
+      margin: 0;
     }
     header, main {
       margin-bottom: 5em;
@@ -36,6 +36,9 @@
     }
     .section {
       margin-bottom: 2em;
+    }
+    h2 {
+      font-family: "worksanssemibold";
     }
     #invoice-details {
       float: right;
@@ -104,13 +107,13 @@
                           <p>Date: {+date+}</p>
                   </div>
                   <div id="my-details" class="section">
-                          <p id="me"><strong>{+name+}</strong></p>
+                          <h2 id="me">{+name+}</h2>
                           <p id="my-address">{+address+}</p>
                           <p id="my-phone">Phone: {+phone+}</p>
                           <p id="my-email">Email: {+email+}</p>
                   </div>
                   <div id="payer-details" class="section">
-                          <p><strong>Invoice to:</strong></p>
+                          <h2>Invoice to:</h2>
                           <p>
                             {+client+}
                             <br>{+client_address+}
