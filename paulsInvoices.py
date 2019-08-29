@@ -146,7 +146,7 @@ class InvoiceTable:
 
         output += "<tfoot>"
         output += "<tr>"
-        output += "<td colspan=2>Balance due:</td>"
+        output += "<td id='balance-due' colspan=2>Balance due:</td>"
         output += "<td class='money'>" + format_money(count_money) + "</td>"
         output += "<tr>"
         output += "</tfoot>"
@@ -155,8 +155,8 @@ class InvoiceTable:
 
         return output
 
-class CASInvoiceTable:
-    """Paul's output table class for CAS invoices"""
+class GigInvoiceTable:
+    """Paul's output table class for gig invoices"""
 
     def __init__ (self):
         self.header = []
@@ -178,7 +178,6 @@ class CASInvoiceTable:
 
         # table header
         output += "<thead><tr>"
-        output += "<th class='reference'>Reference</th>"
         output += "<th class='date'>Date</th>"
         output += "<th class='task'>Description</th>"
         output += "<th class='money'>Amount</th>"
@@ -192,16 +191,14 @@ class CASInvoiceTable:
             if type == "gig":
                 fields = row[1]
 
-                reference = fields[0]
-                date = fields[1]
-                description = fields[2]
-                money = fields[3]
+                date = fields[0]
+                description = fields[1]
+                money = fields[2]
 
                 count_money += money
                 sub_count_money += money
                
                 output += "<tr>"
-                output += "<td class='reference'>" + reference + "</td>"
                 output += "<td class='date'>" + format_date(date) + "</td>"
                 output += "<td class='task'>" + description + "</td>"
                 output += "<td class='money'>" + format_money(money) + "</td>"
@@ -211,7 +208,7 @@ class CASInvoiceTable:
 
         output += "<tfoot>"
         output += "<tr>"
-        output += "<td colspan=3>Balance due:</td>"
+        output += "<td id='balance-due' colspan=2>Balance due:</td>"
         output += "<td class='money'>" + format_money(count_money) + "</td>"
         output += "<tr>"
         output += "</tfoot>"
