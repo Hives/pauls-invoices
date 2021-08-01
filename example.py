@@ -17,25 +17,25 @@ inv = Invoice()
 # your personal details (use <br> for multiple lines):
 inv.name = "Joe Bloggs"
 inv.address = """56 Avenue Street<br>
-				 Townsville<br>
-				 123 ABC"""
+                 Townsville<br>
+                 123 ABC"""
 inv.phone = "01223 334444"
 inv.email = "joe.bloggs@joebloggs.com"
 
 # invoice details
 inv.invoice_id = "INVOICE01"
-inv.period = "September 2018" # the period to which the invoice refers - optional
-inv.date = date(2018, 10, 4) # year, month, day
+inv.period = "September 2018"  # the period to which the invoice refers - optional
+inv.date = date(2018, 10, 4)  # year, month, day
 
 # client details
 inv.client = "Janet Colgate"
 inv.client_address = """99 Boulevard Road<br>
-						Cityborough<br>
-						789 XYZ"""
+                        Cityborough<br>
+                        789 XYZ"""
 
 # how you accept payment
 inv.payment_details = """Please make cheques payable to Joe Bloggs,<br>
-						 or bank transfer to Joe Bloggs, Frank's Bank, 12345678 12-34-56"""
+                         or bank transfer to Joe Bloggs, Frank's Bank, 12345678 12-34-56"""
 
 # the actual details
 inv.invoice_table = output_table

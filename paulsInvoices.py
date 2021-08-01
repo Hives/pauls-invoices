@@ -1,5 +1,3 @@
-from datetime import date
-
 class Invoice:
     """Paul's invoices"""
     template = "invoice-template.html"
@@ -33,7 +31,7 @@ class Invoice:
                         if getattr(self, item):
                             line = line.replace(searchstring, getattr(self, item))
                         else:
-                            line = line.replace(searchstring, "<span class='whoops'>No " + item +"?!</span>")
+                            line = line.replace(searchstring, "<span class='whoops'>No " + item + "?!</span>")
 
                 # optional items - deletes whole line if not entered
                 for item in ['period', 'client_address']:
@@ -57,13 +55,13 @@ class Invoice:
                     else:
                         line = line.replace(searchstring, "<span class='whoops'>No invoice_table?!</span>")
 
-
                 o.write(line)
+
 
 class InvoiceTable:
     """Paul's output table class with hourly calculations"""
 
-    def __init__ (self):
+    def __init__(self):
         self.header = []
         self.rows = []
         self.columns = 3
@@ -93,16 +91,16 @@ class InvoiceTable:
         output += "<th class='hours'>Hours</th>"
         output += "<th class='money'>Amount</th>"
         output += "</tr></thead>"
-        
+
         output += "<tbody>"
 
         for row in self.rows:
             type = row[0]
-            
+
             if type == "hourly":
                 fields = row[1]
 
-                description = fields [0]
+                description = fields[0]
                 hours = fields[1]
                 money = fields[1]*fields[2]
 
@@ -110,7 +108,7 @@ class InvoiceTable:
                 count_money += money
                 sub_count_hours += hours
                 sub_count_money += money
-               
+
                 output += "<tr>"
                 output += "<td class='task'>" + description + "</td>"
                 output += "<td class='hours'>" + format_hours(hours) + "</td>"
@@ -125,7 +123,7 @@ class InvoiceTable:
 
                 count_money += money
                 sub_count_money += money
-               
+
                 output += "<tr>"
                 output += "<td class='task'>" + description + "</td>"
                 output += "<td></td>"
@@ -155,10 +153,11 @@ class InvoiceTable:
 
         return output
 
+
 class GigInvoiceTable:
     """Paul's output table class for gig invoices"""
 
-    def __init__ (self):
+    def __init__(self):
         self.header = []
         self.rows = []
         self.columns = 3
@@ -171,9 +170,7 @@ class GigInvoiceTable:
 
     def render(self):
         output = "<table>"
-        count_hours = 0
         count_money = 0
-        sub_count_hours = 0
         sub_count_money = 0
 
         # table header
@@ -182,12 +179,12 @@ class GigInvoiceTable:
         output += "<th class='task'>Description</th>"
         output += "<th class='money'>Amount</th>"
         output += "</tr></thead>"
-        
+
         output += "<tbody>"
 
         for row in self.rows:
             type = row[0]
-            
+
             if type == "gig":
                 fields = row[1]
 
@@ -197,7 +194,7 @@ class GigInvoiceTable:
 
                 count_money += money
                 sub_count_money += money
-               
+
                 output += "<tr>"
                 output += "<td class='date'>" + format_date(date) + "</td>"
                 output += "<td class='task'>" + description + "</td>"
@@ -217,11 +214,14 @@ class GigInvoiceTable:
 
         return output
 
+
 def format_hours(h):
     return '{0:.2f}'.format(h)
 
+
 def format_money(m):
     return "<span class='pound-sign'>&pound;</span>" + '{0:,.2f}'.format(m)
+
 
 def format_date(d):
     date_format = "%d %b %Y"
